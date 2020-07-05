@@ -20,15 +20,15 @@ namespace DataflowExtensions.Tests
             var completedCommon = 0;
             var errorsCommon = 0;
 
-            var actionProducerConsumer = new ActionBlockPerformer<int>();
-            actionProducerConsumer.Dispose();
+            var performer = new ActionBlockPerformer<int>();
+            performer.Dispose();
 
-            actionProducerConsumer.ItemComplete += (sender, item) => { completedCommon++; };
-            actionProducerConsumer.ItemFailed += (sender, item) => { errorsCommon++; };
+            performer.ItemComplete += (sender, item) => { completedCommon++; };
+            performer.ItemFailed += (sender, item) => { errorsCommon++; };
 
             Assert.Throws<Exception>((() =>
             {
-                actionProducerConsumer.Send(new PerfWorkItem<int>(i =>
+                performer.Send(new PerfWorkItem<int>(i =>
                 {
 
                 }));
