@@ -93,8 +93,6 @@ namespace DataflowExtensions.Tests
 
             Assert.AreEqual(20, completedCommon);
             Assert.AreEqual(0, errorsCommon);
-
-            Console.WriteLine($"{execCount} summ");
         }
 
         [Test]
@@ -155,8 +153,6 @@ namespace DataflowExtensions.Tests
             Assert.AreEqual(0, execCount);
             Assert.AreEqual(20, errors);
             Assert.AreEqual(20, exceptions.Count);
-            
-            Console.WriteLine($"{execCount} summ");
         }
 
         [Test]
@@ -225,8 +221,6 @@ namespace DataflowExtensions.Tests
 
             Assert.AreEqual(0, completedCommon);
             Assert.AreEqual(20, errorsCommon);
-
-            Console.WriteLine($"{execCount} summ");
         }
 
     }
