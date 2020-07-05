@@ -50,18 +50,13 @@ namespace DataflowExtensions.Tests
 
             actionProducerConsumer.Wait(1000);
 
-            for (var i = 0; i < result.Count; i++)
-            {
-                Assert.AreEqual(put[i], result[i]);
-            }
+            for (var i = 0; i < result.Count; i++) Assert.AreEqual(put[i], result[i]);
 
             Assert.AreEqual(100, result.Count);
             Assert.AreEqual(100, execCount);
 
             Assert.AreEqual(100, completedCommon);
             Assert.AreEqual(0, errorsCommon);
-
-            Console.WriteLine($"{execCount} summ");
         }
 
         [Test]
@@ -102,24 +97,19 @@ namespace DataflowExtensions.Tests
 
             actionProducerConsumer.Wait(10000);
 
-            for (var i = 0; i < result.Count; i++)
-            {
-                Assert.AreEqual(put[i], result[i]);
-            }
+            for (var i = 0; i < result.Count; i++) Assert.AreEqual(put[i], result[i]);
 
             Assert.AreEqual(30, result.Count);
             Assert.AreEqual(30, execCount);
 
             Assert.AreEqual(30, completedCommon);
             Assert.AreEqual(0, errorsCommon);
-
-            Console.WriteLine($"{execCount} summ");
         }
 
         [Test]
         public void OrderExecutionTest3()
         {
-            var actionProducerConsumer = new ActionBlockPerformer<int>(1);
+            var performer = new ActionBlockPerformer<int>(1);
 
             var execCount = 0;
 
@@ -143,17 +133,14 @@ namespace DataflowExtensions.Tests
                 t.Completed += (o, y) => { execCount++; };
 
                 put.Add(i);
-                actionProducerConsumer.Send(t);
+                performer.Send(t);
             }
 
-            actionProducerConsumer.Wait(10000);
+            performer.Wait(10000);
 
-            for (var i = 0; i < result.Count; i++)
-            {
-                Assert.AreEqual(put[i], result[i]);
-            }
+            for (var i = 0; i < result.Count; i++) Assert.AreEqual(put[i], result[i]);
 
-           
+
             Assert.AreEqual(10, result.Count);
             Assert.AreEqual(10, execCount);
         }
@@ -196,10 +183,7 @@ namespace DataflowExtensions.Tests
 
             actionProducerConsumer.Wait(10000);
 
-            for (var i = 0; i < result.Count; i++)
-            {
-                Assert.AreEqual(put[i], result[i]);
-            }
+            for (var i = 0; i < result.Count; i++) Assert.AreEqual(put[i], result[i]);
 
             Assert.AreEqual(10, result.Count);
             Assert.AreEqual(10, execCount);
@@ -224,10 +208,7 @@ namespace DataflowExtensions.Tests
 
             actionProducerConsumer.Wait(5000);
 
-            for (var i = 0; i < result.Count; i++)
-            {
-                Assert.AreEqual(put[i], result[i]);
-            }
+            for (var i = 0; i < result.Count; i++) Assert.AreEqual(put[i], result[i]);
 
             Assert.AreEqual(20, completedCommon);
             Assert.AreEqual(0, errorsCommon);
@@ -235,6 +216,5 @@ namespace DataflowExtensions.Tests
             Assert.AreEqual(20, result.Count);
             Assert.AreEqual(20, execCount);
         }
-
     }
 }
