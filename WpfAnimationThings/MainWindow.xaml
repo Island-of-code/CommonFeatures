@@ -1,0 +1,45 @@
+﻿<Window
+    x:Class="WpfAnimationThings.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfAnimationThings"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Grid>
+        <Border
+            Width="20"
+            Height="20"
+            Background="Black"
+            BorderBrush="Transparent">
+            <Border.RenderTransform>
+                <MatrixTransform x:Name="MatrixT">
+                    <MatrixTransform.Matrix>
+                        <Matrix />
+                    </MatrixTransform.Matrix>
+                </MatrixTransform>
+            </Border.RenderTransform>
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <MatrixAnimationUsingPath
+                                DoesRotateWithTangent="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="MatrixT"
+                                Storyboard.TargetProperty="Matrix"
+                                Duration="0:0:5">
+                                <MatrixAnimationUsingPath.PathGeometry>
+                                    <PathGeometry Figures="M201.1,50.501C201.1,78.138,178.737,100.501,151.1,100.501L150.799,100.501C123.162,100.501,114.933,77.834,100.8,50.501L100.8,50.5C86.666,23.167,78.437,0.5,50.8,0.5L50.5,0.5C22.863,0.5,0.500000000000014,22.863,0.500000000000014,50.5L0.500000000000014,50.501C0.500000000000014,78.138,22.863,100.501,50.5,100.501L50.8,100.501C78.437,100.501,86.666,77.834,100.8,50.501L100.8,50.5C114.933,23.167,123.162,0.5,150.799,0.5L151.1,0.5C178.736,0.5,201.1,22.863,201.1,50.501L201.1,50.501z" />
+                                </MatrixAnimationUsingPath.PathGeometry>
+                            </MatrixAnimationUsingPath>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+        </Border>
+    </Grid>
+</Window>
