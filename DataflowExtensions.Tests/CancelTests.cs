@@ -83,15 +83,15 @@ namespace DataflowExtensions.Tests
         [Test]
         public void Test1()
         {
-            var actionProducerConsumer = new ActionBlockPerformer<int>();
+            var performer = new ActionBlockPerformer<int>();
 
             var execCount = 0;
             var errors = 0;
             var completedCommon = 0;
             var errorsCommon = 0;
 
-            actionProducerConsumer.ItemComplete += (sender, item) => { completedCommon++; };
-            actionProducerConsumer.ItemFailed += (sender, item) => { errorsCommon++; };
+            performer.ItemComplete += (sender, item) => { completedCommon++; };
+            performer.ItemFailed += (sender, item) => { errorsCommon++; };
 
             var random = new Random(1);
 
@@ -122,7 +122,7 @@ namespace DataflowExtensions.Tests
 
                 all.Add(t);
                 put.Add(i);
-                actionProducerConsumer.Send(t);
+                performer.Send(t);
             }
 
             for (var i = 0; i < 15; i++)
@@ -130,7 +130,7 @@ namespace DataflowExtensions.Tests
                 all[i].IsCanceled = true;
             }
 
-            actionProducerConsumer.Wait(3000);
+            performer.Wait(3000);
 
 
             foreach (var perfWorkItem in all)
